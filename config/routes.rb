@@ -1,16 +1,18 @@
 LastAttempt::Application.routes.draw do
   resources :users
+
   resources :sessions, only: [:new, :create, :destroy]
   #get "users/new"
  root  'static#home'
   #get "static/home"
-  match '/signup',  to: 'users#new',        via: 'get'
+  match '/signup',  to: 'users#new',        via: 'get' #get 'users/new'
   match '/signin',  to: 'sessions#new',     via: 'get' # кастомный именованный маршрут для страницы входа(направляется к действию нью контроллера Sessions)
-  match '/signout', to: 'sessions#destroy', via: 'gelete'
+  match '/signout', to: 'sessions#destroy', via: :all
   match '/help',    to: 'static#help',      via: 'get'
   match '/about',   to: 'static#about',     via: 'get'
   match '/contact', to: 'static#contact',   via: 'get'
-  
+  match 'user_show', to: 'users#show',   via: :all
+  get 'sessions/new'
 
 
 
